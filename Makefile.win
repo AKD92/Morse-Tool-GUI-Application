@@ -1,0 +1,46 @@
+# Project: Morse Tool GUI
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = obj/MainProgram.o obj/Primary_Window.o obj/panel_MorseToBinary.o obj/panel_binaryToMorse.o obj/About_Window.o obj/panel_morseToText.o obj/panel_textToMorse.o
+LINKOBJ  = obj/MainProgram.o obj/Primary_Window.o obj/panel_MorseToBinary.o obj/panel_binaryToMorse.o obj/About_Window.o obj/panel_morseToText.o obj/panel_textToMorse.o
+LIBS     = -L"C:/Dev-Cpp/MinGW32/lib" -L"C:/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc -L"G:/Ashish Files/documents/My Bookself/Books on IUP GUI Programming (C)/IUP MinGW Libs/iup-3.17_Win32_mingw4_lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Morse Library/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/lib" -L"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/lib" -mwindows -liup -lgdi32 -lcomdlg32 -lcomctl32 -luuid -loleaut32 -lole32 -lmorse -lbst -lstackqueue -llinkedlist -s
+INCS     = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"G:/Ashish Files/documents/My Bookself/Books on IUP GUI Programming (C)/IUP MinGW Libs/iup-3.17_Win32_mingw4_lib/include" -I"G:/Ashish Files/documents/Dev C++ Project Files/Morse Library/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/src"
+CXXINCS  = -I"C:/Dev-Cpp/MinGW32/include" -I"C:/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++" -I"G:/Ashish Files/documents/My Bookself/Books on IUP GUI Programming (C)/IUP MinGW Libs/iup-3.17_Win32_mingw4_lib/include" -I"G:/Ashish Files/documents/Dev C++ Project Files/Morse Library/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Binary Search Tree/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Stack and Queue/src" -I"G:/Ashish Files/documents/Dev C++ Project Files/Linked List/src"
+BIN      = bin/morsetool.exe
+CXXFLAGS = $(CXXINCS) -ansi -std=c99 -Wall
+CFLAGS   = $(INCS) -ansi -std=c99 -Wall
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CC) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+obj/MainProgram.o: src/MainProgram.c
+	$(CC) -c src/MainProgram.c -o obj/MainProgram.o $(CFLAGS)
+
+obj/Primary_Window.o: src/Primary_Window.c
+	$(CC) -c src/Primary_Window.c -o obj/Primary_Window.o $(CFLAGS)
+
+obj/panel_MorseToBinary.o: src/panel_MorseToBinary.c
+	$(CC) -c src/panel_MorseToBinary.c -o obj/panel_MorseToBinary.o $(CFLAGS)
+
+obj/panel_binaryToMorse.o: src/panel_binaryToMorse.c
+	$(CC) -c src/panel_binaryToMorse.c -o obj/panel_binaryToMorse.o $(CFLAGS)
+
+obj/About_Window.o: src/About_Window.c
+	$(CC) -c src/About_Window.c -o obj/About_Window.o $(CFLAGS)
+
+obj/panel_morseToText.o: src/panel_morseToText.c
+	$(CC) -c src/panel_morseToText.c -o obj/panel_morseToText.o $(CFLAGS)
+
+obj/panel_textToMorse.o: src/panel_textToMorse.c
+	$(CC) -c src/panel_textToMorse.c -o obj/panel_textToMorse.o $(CFLAGS)
