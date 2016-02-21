@@ -6,7 +6,7 @@ This project uses my Morse Code Library libmorse.a, hosted on my GitHub account 
 
 The application of this project, morsetool.exe links statically with libmorse.a along with libbst.a, libstackqueue.a and liblinkedlist.a
 
-libbst.a is standard C implementation of Dictionary data structure using Binary Search Tree (BST), libstackqueue.a is standard C implementation of Stack and Queue data structure and liblinkedlist.a is standard C implementation of linked list, both singly and doubly.
+libbst.a is standard C implementation of Dictionary data structure using Binary Search Tree (BST), libstackqueue.a is standard C implementation of Stack and Queue data structure and liblinkedlist.a is standard C implementation of Linked List data structure, both singly and doubly versions.
 
 Graphical User Interface was built using IUP Interface library, which is a multiplatform C user interface toolkit, freely available.
 
