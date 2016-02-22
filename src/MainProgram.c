@@ -24,8 +24,8 @@ BSTTree textToMorse;
 
 /* Error message to show if something goes wrong */
 static const char *errorMessage = "Could not initialize Dictionary data structures\n"
-							"needed for this application to perform necessary\n"
-							"operations.\n\n"
+							"which are needed for this application to perform\n"
+							"necessary operations.\n\n"
 							"Reason : Memory allocation failure.\n\n"
 							"This application will now terminate.";
 
@@ -62,7 +62,7 @@ int main(void) {
 	/* If all four (4) Dictionaries are initialized successfully, isInitialized = 0 */
 	/* For any dictionary not having properly initialized, isInitialized != 0 */
 	/* We perform a simple Bitwise OR of four return values to determine this factor */
-	isInitialized = init1 | init2 | init3 | init4;
+	isInitialized = (unsigned int) (init1 | init2 | init3 | init4);
 
 
 	/* Initialize our GUI toolkit only for the first time */
@@ -71,12 +71,14 @@ int main(void) {
 
 
 		/* Check if our Dictionaries are initialized properly */
+		/* If initialized, show main window and start Event Processing Loop */
 		if (isInitialized == 0) {
 			mainDialog = createMainWindow();
 			IupSetAttribute(mainDialog, "RASTERSIZE", "420x510");
 			IupShowXY(mainDialog, IUP_CENTER, IUP_CENTER);
 			IupMainLoop();
 		}
+		
 		/* If not initialized, show an error message and exit */
 		else {
 			mainDialog = IupMessageDlg();
@@ -107,4 +109,3 @@ int main(void) {
 	/* Return to the operating system */
 	return 0;
 }
-
