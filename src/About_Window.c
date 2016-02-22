@@ -24,7 +24,7 @@ static const char *strProjDept = "Department of Engineering && Computer Science\
 							"BRAC University";
 static const char *strProjEmail = "mailto:akd.bracu@gmail.com";
 static const char *strProjSrcLink = "https://github.com/AshishKumarAKD92/"
-										"Morse-Tool-GUI-Application-";
+										"Morse-Tool-GUI-Application";
 
 
 
@@ -49,7 +49,7 @@ Ihandle *createAboutDialog(void) {
 	lblAuthor = IupLabel(strProjProgrammer);
 	lblDepartment = IupLabel(strProjDept);
 	lblEmail = IupLink(strProjEmail, "akd.bracu@gmail.com");
-	lblProjSource = IupLink(strProjSrcLink, "Source code at my GitHub account");
+	lblProjSource = IupLink(strProjSrcLink, "Source code on my GitHub account");
 	lblSeparator = IupLabel(0);
 	IupSetAttribute(lblSeparator, "SEPARATOR", "HORIZONTAL");
 	IupSetAttribute(lblProjName, "ALIGNMENT", "ACENTER");

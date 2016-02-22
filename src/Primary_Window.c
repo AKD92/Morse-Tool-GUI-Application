@@ -146,8 +146,14 @@ static int cb_btnAbout(Ihandle *btn) {
 
 	dlgAbout = createAboutDialog();
 	IupSetAttribute(dlgAbout, "RASTERSIZE", "350x380");
+	
+	/* Show this about dialog on the screen */
 	IupPopup(dlgAbout, dlgAboutPosX, dlgAboutPosY);
+	
+	/* Store last screen positions of our dialog for later use */
 	IupGetIntInt(dlgAbout, "SCREENPOSITION", &dlgAboutPosX, &dlgAboutPosY);
+	
+	/* Explicit destruction is necessary (for popup dialogs) */
 	IupDestroy(dlgAbout);
 
 	return IUP_DEFAULT;
