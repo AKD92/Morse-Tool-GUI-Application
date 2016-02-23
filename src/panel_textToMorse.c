@@ -1,5 +1,16 @@
 
 
+
+/************************************************************************************
+	Implementation code of ASCII To Morse panel box + necessary callback functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
+
 #include <stdio.h>
 #include <iup.h>
 #include <stdlib.h>
@@ -21,12 +32,20 @@ static char *generalInfo = "This command decodes ASCII text\n"
 					"to corresponding morse code.\n"
 					"To enter your text, you must\n"
 					"type them in UPPERCASE :\n\n"
-					"For example, SOS\n\n"
-					"Enter alphaneumeric characters\n"
-					"or digits as your text input.\n"
+					"For example, SOS 290?\n\n"
+					"Numeric digits are supported, 0 - 9\n"
+					"Other supported characters are\n"
+					"<space> + - * / = ( ) ? ! . ' \" , ; @\n\n"
 					"Any other character except these will be\n"
 					"unnecessary and not allowed.";
-
+					
+//static char *errorMsg = "Decoding operation failed\n"
+//						"The specific library command could not be executed\n"
+//						"And returned abnormally\n\n"
+//						"Function return value: %d";
+					
+static char *mask_asciiText = "[0-9A-Z/ /+/-/*//=/(/)/?/!/./'/\"/,/;/@/>]*";
+//"[0-9A-Z/ /./,/?/!]*"
 
 static int cb_btnDecodeToMorse(Ihandle *btn);
 
@@ -52,7 +71,12 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 	Ihandle *txtMorse, *txtAscii, *msgDialog;
 	char *morseText, *asciiText;
 	int morseLen, asciiLen;
+	
+	Ihandle *errorDialog;
+	char *errorText;
+	int opReturnCode;
 
+	extern char *error_decode;
 	extern BSTTree textToMorse;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_4);
@@ -75,7 +99,29 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 		goto END;
 	}
 
-	morse_convAsciiToMorse(&textToMorse, asciiText, asciiLen, morseText, &morseLen);
+	opReturnCode = morse_convAsciiToMorse(
+						&textToMorse, asciiText, asciiLen, morseText, &morseLen);
+
+	/* Check to see if decoding operation is successful or not */
+	if (opReturnCode != 0) {
+		
+		errorText = (char *) malloc(strlen(error_decode) + 10);
+		sprintf(errorText, error_decode, opReturnCode);
+		
+		errorDialog = IupMessageDlg();
+		IupSetAttribute(errorDialog, "DIALOGTYPE", "ERROR");
+		IupSetAttribute(errorDialog, "BUTTONS", "OK");
+		IupSetAttribute(errorDialog, "TITLE", "Error");
+		IupSetAttribute(errorDialog, "PARENTDIALOG", MAINDIALOG);
+		IupSetAttribute(errorDialog, "VALUE", errorText);
+		
+		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
+		IupDestroy(errorDialog);
+		free(errorText);
+		goto END;
+	}
+	
+	/* Add a nul terminator at the end of the output buffer */
 	*(morseText + morseLen) = '\0';
 
 	/*printf("Decoded morse %s, len %d\n", morseText, morseLen);*/
@@ -206,7 +252,7 @@ Ihandle *panel_createTextToMorse(void) {
 	IupSetAttribute(txtAscii, "FONTSIZE", "12");
 	IupSetAttribute(txtMorse, "SIZE", "x14");
 	IupSetAttribute(txtAscii, "SIZE", "x14");
-	IupSetAttribute(txtAscii, "MASK", "[0-9A-Z/ /./,/?/!]*");
+	IupSetAttribute(txtAscii, "MASK", mask_asciiText);
 
 	IupSetCallback(txtAscii, "VALUECHANGED_CB", (Icallback) cb_txtAsciiAction);
 

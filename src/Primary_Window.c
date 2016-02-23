@@ -1,6 +1,15 @@
 
 
 
+/************************************************************************************
+	Implementation code of Primary (Main) Window with necessary callback functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
 
 #include <stdio.h>
 #include <iup.h>
@@ -10,13 +19,25 @@
 #include "MorseTool.h"
 
 
+
+/* Integer variable for temporary storage of About dialog on the screen */
+/* For later uses, like use this values when to show About dialog again */
 int dlgAboutPosX, dlgAboutPosY;
 
 
+
+/* Callback function for About button */
 static int cb_btnAbout(Ihandle *btn);
+
+/* Callback function for Exit Program button */
 static int cb_btnExit(Ihandle *btn);
+
+/* Callback function for Key press (F1, F2, F3, F4) actions */
 static int cb_keyPress(Ihandle *hnd, int key);
 
+
+
+/* Callback function for Flat buttons in the Control Panel frame */
 static int cb_flatButton1(Ihandle *btn);
 static int cb_flatButton2(Ihandle *btn);
 static int cb_flatButton3(Ihandle *btn);
@@ -24,6 +45,8 @@ static int cb_flatButton4(Ihandle *btn);
 
 
 
+/* Function for copying text string from textBox to System Clipboard */
+/* Used by other callback functions from other .c files in this project */
 void textCopyClipboardFrom(Ihandle *textBox);
 
 
@@ -40,6 +63,9 @@ static int cb_keyPress(Ihandle *hnd, int key) {
 	Ihandle *controlRadio;
 	Ihandle *toggle1, *toggle2, *toggle3, *toggle4;
 	
+	
+	/* Load necessary widget handles (pointers) from IUP registry */
+	/* String constants are define in global header file */
 	panel_z = IupGetHandle(PANEL_Z);
 	controlRadio = IupGetHandle(CONTROL_RADIO);
 	toggle1 = IupGetHandle(TOGGLE_MORSETOBINARY);
@@ -47,25 +73,43 @@ static int cb_keyPress(Ihandle *hnd, int key) {
 	toggle3 = IupGetHandle(TOGGLE_MORSETOTEXT);
 	toggle4 = IupGetHandle(TOGGLE_TEXTTOMORSE);
 	
+	
+	/* Select decision based on the key pressed by the user */
 	switch (key) {
+		
+		
+		/* If user pressed F1, show the Morse To Binary panel */
+		/* Additionally, change selected button on the radio and set focus on that */
 		case K_F1 :
 			IupSetAttribute(controlRadio, "VALUE", TOGGLE_MORSETOBINARY);
 			IupSetAttribute(panel_z, "VALUE", PANEL_MORSETOBINARY);
 			IupSetFocus(toggle1);
 //			printf("Pressed F1\n");
 			break;
+			
+			
+		/* If user pressed F2, show the Binary To Morse panel */
+		/* Additionally, change selected button on the radio and set focus on that */
 		case K_F2 :
 			IupSetAttribute(controlRadio, "VALUE", TOGGLE_BINARYTOMORSE);
 			IupSetAttribute(panel_z, "VALUE", PANEL_BINARYTOMORSE);
 			IupSetFocus(toggle2);
 //			printf("Pressed F2\n");
 			break;
+			
+			
+		/* If user pressed F3, show the Morse To ASCII panel */
+		/* Additionally, change selected button on the radio and set focus on that */
 		case K_F3 :
 			IupSetAttribute(controlRadio, "VALUE", TOGGLE_MORSETOTEXT);
 			IupSetAttribute(panel_z, "VALUE", PANEL_MORSETOTEXT);
 			IupSetFocus(toggle3);
 //			printf("Pressed F3\n");
 			break;
+			
+			
+		/* If user pressed F4, show the ASCII To Morse panel */
+		/* Additionally, change selected button on the radio and set focus on that */
 		case K_F4 :
 			IupSetAttribute(controlRadio, "VALUE", TOGGLE_TEXTTOMORSE);
 			IupSetAttribute(panel_z, "VALUE", PANEL_TEXTTOMORSE);
@@ -80,6 +124,7 @@ static int cb_keyPress(Ihandle *hnd, int key) {
 
 static int cb_btnExit(Ihandle *btn) {
 
+	/* This return value shuts down the whole application */
 	return IUP_CLOSE;
 }
 
@@ -94,6 +139,8 @@ void textCopyClipboardFrom(Ihandle *textBox) {
 	msgFormat = 0;
 	dlgType = 0;
 
+
+	/* Retrieve the string from the textbox and its length */
 	text = IupGetAttribute(textBox, "VALUE");
 	length = strlen(text);
 
@@ -115,7 +162,10 @@ void textCopyClipboardFrom(Ihandle *textBox) {
 		IupDestroy(clipboard);
 
 		msgFormat = "Text copied to clipboard, length: %d";
-		msgText = (char *) malloc(strlen(msgFormat) + 1);
+		
+		
+		/* Additionaly 9 bytes extra for safety, length can be 2 digits or more */
+		msgText = (char *) malloc(strlen(msgFormat) + 10);
 
 		if (msgText == 0) return;
 
@@ -124,16 +174,19 @@ void textCopyClipboardFrom(Ihandle *textBox) {
 	}
 
 	msgDialog = IupMessageDlg();
-
 	IupSetAttribute(msgDialog, "DIALOGTYPE", dlgType);
 	IupSetAttribute(msgDialog, "BUTTONS", "OK");
 	IupSetAttribute(msgDialog, "TITLE", "Copy text");
 	IupSetAttribute(msgDialog, "PARENTDIALOG", MAINDIALOG);
 	IupSetAttribute(msgDialog, "VALUE", msgText);
 
+	/* Show this error message dialog on the screen */
 	IupPopup(msgDialog, IUP_CENTER, IUP_CENTER);
 
+	/* Explicit destruction is necessary (for popup dialogs) */
 	IupDestroy(msgDialog);
+	
+	/* Destroy the string buffer we have created before */
 	free(msgText);
 
 	return;
@@ -268,11 +321,13 @@ Ihandle *createMainWindow(void) {
 	panel3 = panel_createMorseToText();
 	panel4 = panel_createTextToMorse();
 	
+	/* Use IupZbox to pile up all the separate boxes, allowing one of them to show */
 	panel_z = IupZbox(panel1, panel2, panel3, panel4, 0);
 	IupSetAttribute(panel_z, "NMARGIN", "0x0");
 	IupSetAttribute(panel_z, "EXPAND", "YES");
 	IupSetHandle(PANEL_Z, panel_z);
 	
+	/* Control panel box holds the flat button for changing visible panel in Zbox */
 	panel_control = panel_createControl();
 	frm_control = IupFrame(panel_control);
 	IupSetAttribute(frm_control, "SUNKEN", "NO");

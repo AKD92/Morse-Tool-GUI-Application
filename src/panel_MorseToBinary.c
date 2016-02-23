@@ -1,5 +1,16 @@
 
 
+
+/************************************************************************************
+	Implementation code of Morse To Binary panel box + necessary callback functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
+
 #include <stdio.h>
 #include <iup.h>
 #include <stdlib.h>
@@ -28,6 +39,11 @@ static char *generalInfo = "This command decodes morse code\n"
 					"Any other character except these will be\n"
 					"unnecessary and not allowed.";
 					
+//static char *errorMsg = "Decoding operation failed\n"
+//						"The specific library command could not be executed\n"
+//						"And returned abnormally\n\n"
+//						"Function return value: %d";
+					
 
 static int cb_btnDecodeToBinary(Ihandle *btn);
 
@@ -54,6 +70,11 @@ static int cb_btnDecodeToBinary(Ihandle *btn) {
 	char *morseText, *binaryText;
 	int morseLen, binaryLen;
 
+	Ihandle *errorDialog;
+	char *errorText;
+	int opReturnCode;
+
+	extern char *error_decode;
 	extern BSTTree morseToBinary;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_1);
@@ -76,7 +97,29 @@ static int cb_btnDecodeToBinary(Ihandle *btn) {
 		goto END;
 	}
 
-	morse_convMorseToBinary(&morseToBinary, morseText, morseLen, binaryText, &binaryLen);
+	opReturnCode = morse_convMorseToBinary(
+						&morseToBinary, morseText, morseLen, binaryText, &binaryLen);
+						
+	/* Check to see if decoding operation is successful or not */
+	if (opReturnCode != 0) {
+
+		errorText = (char *) malloc(strlen(error_decode) + 10);
+		sprintf(errorText, error_decode, opReturnCode);
+
+		errorDialog = IupMessageDlg();
+		IupSetAttribute(errorDialog, "DIALOGTYPE", "ERROR");
+		IupSetAttribute(errorDialog, "BUTTONS", "OK");
+		IupSetAttribute(errorDialog, "TITLE", "Error");
+		IupSetAttribute(errorDialog, "PARENTDIALOG", MAINDIALOG);
+		IupSetAttribute(errorDialog, "VALUE", errorText);
+
+		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
+		IupDestroy(errorDialog);
+		free(errorText);
+		goto END;
+	}
+
+	/* Add a nul terminator at the end of the output buffer */
 	*(binaryText + binaryLen) = '\0';
 
 	/*printf("Decoded binary %s, len %d\n", binaryText, binaryLen);*/

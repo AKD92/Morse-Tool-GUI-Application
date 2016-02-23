@@ -1,7 +1,16 @@
 
 
-#ifndef MORSEDLG_H
-#define MORSEDLG_H
+
+/************************************************************************************
+	Global header file for Morse Tool Application
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+#ifndef MORSE_WINDOW_H
+#define MORSE_WINDOW_H
 
 
 

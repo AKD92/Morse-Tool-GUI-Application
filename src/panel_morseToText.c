@@ -1,5 +1,16 @@
 
 
+
+/************************************************************************************
+	Implementation code of Morse To ASCII panel box + necessary callback functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
+
 #include <stdio.h>
 #include <iup.h>
 #include <stdlib.h>
@@ -18,7 +29,7 @@
 
 
 static char *generalInfo = "This command decodes morse code\n"
-					"to corresponding binary code.\n"
+					"to ASCII text string.\n"
 					"To enter morse code, use following\n"
 					"keyboard buttons :\n\n"
 					". for a DOT\n"
@@ -27,6 +38,11 @@ static char *generalInfo = "This command decodes morse code\n"
 					"| for a Word separator\n\n"
 					"Any other character except these will be\n"
 					"unnecessary and not allowed.";
+					
+//static char *errorMsg = "Decoding operation failed\n"
+//						"The specific library command could not be executed\n"
+//						"And returned abnormally\n\n"
+//						"Function return value: %d";
 
 
 static int cb_btnDecodeToAscii(Ihandle *btn);
@@ -54,6 +70,11 @@ static int cb_btnDecodeToAscii(Ihandle *btn) {
 	char *morseText, *asciiText;
 	int morseLen, asciiLen;
 
+	Ihandle *errorDialog;
+	char *errorText;
+	int opReturnCode;
+
+	extern char *error_decode;
 	extern BSTTree morseToText;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_3);
@@ -76,7 +97,29 @@ static int cb_btnDecodeToAscii(Ihandle *btn) {
 		goto END;
 	}
 
-	morse_convMorseToAscii(&morseToText, morseText, morseLen, asciiText, &asciiLen);
+	opReturnCode = morse_convMorseToAscii(
+							&morseToText, morseText, morseLen, asciiText, &asciiLen);
+							
+	/* Check to see if decoding operation is successful or not */
+	if (opReturnCode != 0) {
+
+		errorText = (char *) malloc(strlen(error_decode) + 10);
+		sprintf(errorText, error_decode, opReturnCode);
+
+		errorDialog = IupMessageDlg();
+		IupSetAttribute(errorDialog, "DIALOGTYPE", "ERROR");
+		IupSetAttribute(errorDialog, "BUTTONS", "OK");
+		IupSetAttribute(errorDialog, "TITLE", "Error");
+		IupSetAttribute(errorDialog, "PARENTDIALOG", MAINDIALOG);
+		IupSetAttribute(errorDialog, "VALUE", errorText);
+
+		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
+		IupDestroy(errorDialog);
+		free(errorText);
+		goto END;
+	}
+
+	/* Add a nul terminator at the end of the output buffer */
 	*(asciiText + asciiLen) = '\0';
 
 	/*printf("Decoded ascii %s, len %d\n", asciiText, asciiLen);*/

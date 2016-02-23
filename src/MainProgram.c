@@ -1,11 +1,20 @@
 
 
 
-#include <iup.h>
-#include <stdio.h>
-#include <BSTTree.h>
-#include <MorseLib.h>
-#include "MorseTool.h"
+/************************************************************************************
+	Implementation code for main() function and global variables
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
+#include <iup.h>					/* Header file for GUI toolkit */
+#include <stdio.h>					/* Header file for Standard IO */
+#include <BSTTree.h>				/* Header file for Dictionary ADT */
+#include <MorseLib.h>				/* Header file for Morse Library */
+#include "MorseTool.h"				/* Header file for Global declarations */
 
 
 
@@ -23,11 +32,17 @@ BSTTree textToMorse;
 
 
 /* Error message to show if something goes wrong */
-static const char *errorMessage = "Could not initialize Dictionary data structures\n"
+static const char *errorMessage_1 = "Could not initialize Dictionary data structures\n"
 							"which are needed for this application to perform\n"
 							"necessary operations.\n\n"
 							"Reason : Memory allocation failure.\n\n"
 							"This application will now terminate.";
+							
+							
+char *error_decode = "Decoding operation failed\n"
+						"The specified decoding command could not be executed.\n\n"
+						"Function returned abnormally, return value: %d.\n"
+						"Possible reason: unsupported input combination.";
 
 
 
@@ -61,7 +76,7 @@ int main(void) {
 	/* Determine of our Dictionary data structures are properly initialized or not */
 	/* If all four (4) Dictionaries are initialized successfully, isInitialized = 0 */
 	/* For any dictionary not having properly initialized, isInitialized != 0 */
-	/* We perform a simple Bitwise OR of four return values to determine this factor */
+	/* We perform a simple Bitwise OR between four return values to determine this factor */
 	isInitialized = (unsigned int) (init1 | init2 | init3 | init4);
 
 
@@ -85,7 +100,7 @@ int main(void) {
 			IupSetAttribute(mainDialog, "DIALOGTYPE", "ERROR");
 			IupSetAttribute(mainDialog, "BUTTONS", "OK");
 			IupSetAttribute(mainDialog, "TITLE", "Initialization Problem");
-			IupSetAttribute(mainDialog, "VALUE", errorMessage);
+			IupSetAttribute(mainDialog, "VALUE", errorMessage_1);
 			
 			/* Show this error message dialog on the screen */
 			IupPopup(mainDialog, IUP_CENTER, IUP_CENTER);
@@ -99,7 +114,7 @@ int main(void) {
 	IupClose();
 
 
-	/* Destroy (releases memory) all four Dictionary data structures */
+	/* Destroy (releases memory of) all four Dictionary data structures */
 	bst_destroy(&morseToBinary);
 	bst_destroy(&binaryToMorse);
 	bst_destroy(&morseToText);
@@ -109,3 +124,4 @@ int main(void) {
 	/* Return to the operating system */
 	return 0;
 }
+

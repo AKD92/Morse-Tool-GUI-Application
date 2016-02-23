@@ -1,14 +1,21 @@
 
 
 
+/************************************************************************************
+	Implementation code of About Window with necessary callback functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
 #include <iup.h>
 #include <stdlib.h>
 #include "MorseTool.h"
 
 
 #define BTN_CLOSE "btnClose"
-
-
 
 
 
@@ -23,7 +30,7 @@ static const char *strProjProgrammer = "Programmed by : Ashis Kumar Das";
 static const char *strProjDept = "Department of Engineering && Computer Science\n"
 							"BRAC University";
 static const char *strProjEmail = "mailto:akd.bracu@gmail.com";
-static const char *strProjSrcLink = "https://github.com/AshishKumarAKD92/"
+static const char *strProjSrcLink = "https://github.com/AKD92/"
 										"Morse-Tool-GUI-Application";
 
 

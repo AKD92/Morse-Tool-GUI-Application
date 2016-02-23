@@ -1,5 +1,16 @@
 
 
+
+/************************************************************************************
+	Implementation code of Binary To Morse panel box + necessary callback functions
+	Author:             Ashis Kumar Das
+	Email:              akd.bracu@gmail.com
+*************************************************************************************/
+
+
+
+
+
 #include <stdio.h>
 #include <iup.h>
 #include <stdlib.h>
@@ -17,16 +28,21 @@
 #define FRMT_BINARYLEN_2 "Binary bit string length: %d"
 
 
-static char *generalInfo = "This command decodes morse code\n"
-					"to corresponding binary code.\n"
-					"To enter morse code, use following\n"
-					"keyboard buttons :\n\n"
-					". for a DOT\n"
-					"- for a DASH\n"
-					"/ for a Letter separator\n"
-					"| for a Word separator\n\n"
+static char *generalInfo = "This command decodes binary code\n"
+					"to corresponding morse code.\n"
+					"To enter binary code, use following\n"
+					"binary digit combinatons :\n\n"
+					"0 for a DOT (.)\n"
+					"10 for a DASH (-)\n"
+					"110 for a Letter separator (/)\n"
+					"1110 for a Word separator (|)\n\n"
 					"Any other character except these will be\n"
 					"unnecessary and not allowed.";
+					
+//static char *errorMsg = "Decoding operation failed\n"
+//						"The specific library command could not be executed\n"
+//						"And returned abnormally\n\n"
+//						"Function return value: %d";
 
 
 static int cb_btnDecodeToMorse(Ihandle *btn);
@@ -54,6 +70,11 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 	char *morseText, *binaryText;
 	int morseLen, binaryLen;
 
+	Ihandle *errorDialog;
+	char *errorText;
+	int opReturnCode;
+
+	extern char *error_decode;
 	extern BSTTree binaryToMorse;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_2);
@@ -76,7 +97,29 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 		goto END;
 	}
 
-	morse_convBinaryToMorse(&binaryToMorse, binaryText, binaryLen, morseText, &morseLen);
+	opReturnCode = morse_convBinaryToMorse(
+						&binaryToMorse, binaryText, binaryLen, morseText, &morseLen);
+						
+	/* Check to see if decoding operation is successful or not */
+	if (opReturnCode != 0) {
+
+		errorText = (char *) malloc(strlen(error_decode) + 10);
+		sprintf(errorText, error_decode, opReturnCode);
+
+		errorDialog = IupMessageDlg();
+		IupSetAttribute(errorDialog, "DIALOGTYPE", "ERROR");
+		IupSetAttribute(errorDialog, "BUTTONS", "OK");
+		IupSetAttribute(errorDialog, "TITLE", "Error");
+		IupSetAttribute(errorDialog, "PARENTDIALOG", MAINDIALOG);
+		IupSetAttribute(errorDialog, "VALUE", errorText);
+
+		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
+		IupDestroy(errorDialog);
+		free(errorText);
+		goto END;
+	}
+
+	/* Add a nul terminator at the end of the output buffer */
 	*(morseText + morseLen) = '\0';
 
 	/*printf("Decoded morse %s, len %d\n", morseText, morseLen);*/
