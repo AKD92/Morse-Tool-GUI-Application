@@ -30,8 +30,8 @@ static const char *strProjProgrammer = "Programmed by : Ashis Kumar Das";
 static const char *strProjDept = "Department of Engineering && Computer Science\n"
 							"BRAC University";
 static const char *strProjEmail = "mailto:akd.bracu@gmail.com";
-static const char *strProjSrcLink = "https://github.com/AKD92/"
-										"Morse-Tool-GUI-Application";
+static const char *strProjSrcLink = "https://github.com/AKD92"
+										"/Morse-Tool-GUI-Application.git";
 
 
 
