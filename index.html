@@ -20,16 +20,17 @@
 
     <section class="main-content">
       <h1>
-<a id="morse-tool-gui-frontend" class="anchor" href="#morse-tool-gui-frontend" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Morse Tool (GUI Frontend)</h1>
+<a id="introduction-to-morse-tool" class="anchor" href="#introduction-to-morse-tool" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Introduction to Morse Tool</h1>
 
-<p>This is basically a conversion tool. It uses the library <a href="https://github.com/AKD92/Morse-Code-Conversion-Library">libmorse.a</a> for all kinds of conversion and it is very convenient and easy to use. It is particularly useful if you wish to chnage your ASCII text to Morse code representation, Binary representation etc and the reverse is also supported.</p>
+<p>This is basically a conversion tool. It uses the library <a href="https://github.com/AKD92/Morse-Code-Conversion-Library">libmorse.a</a> for all kinds of conversion and it is very convenient and easy to use. It is particularly useful if you wish to chnage your ASCII text to Morse code representation, Binary representation etc and the reverse is also supported.
+For example, ASCII Text <strong>"SOS"</strong> might be converted to its equivalent Morse Code <strong>"... --- ..."</strong> (DOT DOT DOT DASH DASH DASH DOT DOT DOT).</p>
 
 <p><img src="https://github.com/AKD92/Morse-Tool-GUI-Application/raw/master/scrn_1.png" alt="Main Window"> <img src="https://github.com/AKD92/Morse-Tool-GUI-Application/raw/master/scrn_2.png" alt=""></p>
 
 <p>The aim of this open-source project is to design and offer a graphical frontend for my Morse Code Library <a href="https://github.com/AKD92/Morse-Code-Conversion-Library">libmorse.a</a>. The output of this project will be a stand-alone desktop application which can be used for conversion of morse code to other forms and vice versa.</p>
 
 <h2>
-<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features:</h2>
+<a id="implemented-features" class="anchor" href="#implemented-features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Implemented Features:</h2>
 
 <ul>
 <li>ASCII Text to Morse code conversion</li>
@@ -38,28 +39,36 @@
 <li>Binary to Morse Code conversion</li>
 </ul>
 
-<p>You can download this application by clicking "Download ZIP" link. You can also build it from the source.</p>
+<p>You can download this application by clicking "Download ZIP" link shown above, or you can also build it from the source. For building from source, consult with the makefile included to the GitHub repository of this project.</p>
 
 <h2>
 <a id="project-background" class="anchor" href="#project-background" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Project Background</h2>
 
-<p>I should not forget to mention that, it is a byproduct of my <strong>Digital System Design (DSD)</strong> project "Secret message tranmitter and receiver via Morse Code". On that project, we were a group of 4 team members to develop a microcontroller based solution by which Morse code can be sent digitally from one place to another wirelessly, and at the receiver end the person will see the actual ASCII text of the message converted from sender's machine. Wireless transfer, Morse code input and conversion of Morse code to Binary and ASCII Text is done by the microcontroller we've used. I had to program that microcontroller (an <strong>Arduino</strong>) for morse conversion routines, and here this project is slightly modified version of that original work in order to bring broader range of capabilities and performance.</p>
+<p>I should not forget to mention that, it is a byproduct of my <strong>Digital System Design (DSD)</strong> project "Secret message tranmitter and receiver via Morse Code". On that project, we were a group of 4 team members to develop a microcontroller based solution by which Morse code can be sent digitally from one place to another wirelessly, and at the receiver end the person will see the actual ASCII text of the message received from sender's machine. Wireless transfer, Morse code input and conversion of Morse code to Binary and ASCII Text are done by the microcontroller we've used. I had to program that microcontroller (an <strong>Arduino</strong>) for morse conversion routines, and here, this project is a slightly modified version of that original work in order to bring broader range of capabilities and performance.</p>
 
 <h2>
 <a id="code-dependencies" class="anchor" href="#code-dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Code dependencies</h2>
 
 <ul>
 <li>
-<a href="https://github.com/AKD92/Dictionary-ADT-by-BST">libbst.a</a> is standard C implementation of Dictionary data structure using Binary Search Tree (BST).</li>
+<a href="https://github.com/AKD92/Dictionary-ADT-by-BST">libbst.a</a> : General purpose Dictionary data structure, implemented using Binary Search Tree (BST).</li>
 <li>
-<a href="https://github.com/AKD92/Stack-and-Queue-ADT">libstackqueue.a</a> is standard C implementation of Stack and Queue data structure.</li>
+<a href="https://github.com/AKD92/Stack-and-Queue-ADT">libstackqueue.a</a> : General purpose Stack and Queue data structures.</li>
 <li>
-<a href="https://github.com/AKD92/Linked-List-ADT">liblinkedlist.a</a> is standard C implementation of Linked List data structure, including both singly and doubly versions.</li>
+<a href="https://github.com/AKD92/Linked-List-ADT">liblinkedlist.a</a> : General purpose Linked List data structure, including both singly and doubly versions.</li>
 </ul>
 
 <p>Graphical User Interface was built using <a href="http://webserver2.tecgraf.puc-rio.br/iup/">IUP</a> Interface library, which is a multiplatform and portable user interface toolkit, freely available.</p>
 
+<h2>
+<a id="compilation" class="anchor" href="#compilation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Compilation</h2>
+
 <p>This application is compiled using GCC 4.8.2 32 bit (MinGW).</p>
+
+<h2>
+<a id="i-need-your-help" class="anchor" href="#i-need-your-help" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>I need your HELP!</h2>
+
+<p>Please let me know if you find any <strong>BUG</strong> at my email <a href="mailto:akd.bracu@gmail.com">akd.bracu@gmail.com</a></p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/AKD92/Morse-Tool-GUI-Application">Morse Tools</a> is maintained by <a href="https://github.com/AKD92">AKD92</a>.</span>
