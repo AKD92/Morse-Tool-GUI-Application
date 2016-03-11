@@ -6,8 +6,10 @@
 
 <img align="right" hspace = "10px" src="https://github.com/AKD92/Morse-Tool-GUI-Application/raw/master/scrn_1.png">
 
-The aim of this project is to design and offer a graphical frontend for my Morse Code Library libmorse.a.
-<br>The output of this project will be a stand-alone application (exe) which can be used for conversion of morse code to other forms and vice versa.</br>
+This is basically a conversion tool. It uses the library <b>libmorse.a</b> for all kinds of conversion and it is very convenient and easy to use. It is particularly useful if you wish to change your ASCII text to Morse code representation, Binary representation etc, and the reverse operations are also supported.
+
+For example, ASCII Text <b>SOS</b> might be converted to its equivalent Morse Code <b>... --- ...</b? <i>DOT DOT DOT DASH DASH DASH DOT DOT DOT</i>
+
 
 ### Implemented Features:
 * ASCII Text to Morse code conversion
