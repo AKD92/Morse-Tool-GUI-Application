@@ -1,6 +1,6 @@
 
 # Morse Tool
-<b><i>A portable Graphical User Interface application for Conversion of Morse Codes to other forms and vice-versa</i></b>
+<b><i>A portable Graphical User Interface application for conversion of Morse Codes to other forms and vice-versa</i></b>
 
 ### Project Website: http://akd92.github.io/Morse-Tool-GUI-Application/
 
@@ -12,10 +12,12 @@ For example, ASCII Text <b>SOS</b> might be converted to its equivalent Morse Co
 
 
 ### Implemented Features:
+
 * ASCII Text to Morse code conversion
 * Morse Code to ASCII text conversion
 * Morse Code to Binary conversion
 * Binary to Morse Code conversion
+
 
 ### Code Dependencies
 
@@ -25,6 +27,6 @@ For example, ASCII Text <b>SOS</b> might be converted to its equivalent Morse Co
   * <b>liblinkedlist.a</b> : General purpose Linked List data structure, including both singly and doubly versions.
 
 
-This project is compiled using GCC 4.8 32 bit Windows port.
+This project is compiled using <b>GCC 4.8.2 32 bit</b> Windows port.
 
-For more information, check the <a href = "http://akd92.github.io/Morse-Tool-GUI-Application/">Project Website</a>
+For more information, please check the <a href = "http://akd92.github.io/Morse-Tool-GUI-Application/">Project Website</a>
