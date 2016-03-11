@@ -1,5 +1,6 @@
 
-# Morse Tool (Graphical User Interface App)
+# Morse Tool
+<b><i>A portable Graphical User Interface application for Conversion of Morse Codes to other forms and vice-versa</i></b>
 
 ### Project Website: http://akd92.github.io/Morse-Tool-GUI-Application/
 
