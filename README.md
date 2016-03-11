@@ -14,9 +14,13 @@ The aim of this project is to design and offer a graphical frontend for my Morse
 * Morse Code to Binary conversion
 * Binary to Morse Code conversion
 
-This project uses my Morse Code Library "libmorse.a", hosted on my GitHub account under the name of repository "Morse-Code-Library"
+### Code Dependencies
 
-The application of this project, "morsetool.exe" (can be found inside of "bin" directory) links statically with "libmorse.a" along with "libbst.a", "libstackqueue.a" and "liblinkedlist.a".
+  * <b>libmorse.a</b> : A collection of algorithms and utility functions for transforming Morse code to other forms and vice versa.
+  * <b>libbst.a</b> : General purpose Dictionary data structure, implemented using Binary Search Tree (BST).
+  * <b>libstackqueue.a</b> : General purpose Stack and Queue data structures.
+  * <b>liblinkedlist.a</b> : General purpose Linked List data structure, including both singly and doubly versions.
+
 
 This project is compiled using GCC 4.8 32 bit Windows port.
 
