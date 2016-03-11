@@ -75,7 +75,7 @@ static int cb_btnDecodeToAscii(Ihandle *btn) {
 	int opReturnCode;
 
 	extern char *error_decode;
-	extern BSTTree morseToText;           	/* Might be declared in the driver file */
+	extern BST morseToText;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_3);
 	txtAscii = IupGetHandle(TXTASCII_1);
@@ -115,7 +115,7 @@ static int cb_btnDecodeToAscii(Ihandle *btn) {
 
 		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
 		IupDestroy(errorDialog);
-		free(errorText);
+		free((void *) errorText);
 		goto END;
 	}
 
@@ -127,7 +127,7 @@ static int cb_btnDecodeToAscii(Ihandle *btn) {
 
 	END:
 	cb_txtAsciiAction(txtAscii);
-	free(asciiText);
+	free((void *) asciiText);
 
 	return IUP_DEFAULT;
 }

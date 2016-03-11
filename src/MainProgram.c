@@ -12,7 +12,7 @@
 
 #include <iup.h>					/* Header file for GUI toolkit */
 #include <stdio.h>					/* Header file for Standard IO */
-#include <BSTTree.h>				/* Header file for Dictionary ADT */
+#include <bst.h>					/* Header file for Dictionary ADT */
 #include <MorseLib.h>				/* Header file for Morse Library */
 #include "MorseTool.h"				/* Header file for Global declarations */
 
@@ -25,10 +25,10 @@ int main(void);
 
 
 /* Dictionary data structure variables for code conversions */
-BSTTree morseToBinary;
-BSTTree binaryToMorse;
-BSTTree morseToText;
-BSTTree textToMorse;
+BST morseToBinary;
+BST binaryToMorse;
+BST morseToText;
+BST textToMorse;
 
 
 /* Error message to show if something goes wrong */
@@ -57,13 +57,14 @@ int main(void) {
 	Ihandle *mainDialog;
 	int init1, init2, init3, init4;
 	unsigned int isInitialized;
+	int retCode;
 	
 	
 	/* Initialize all four Dictionary data structures (optional) */
-	bst_init(&morseToBinary);
-	bst_init(&binaryToMorse);
-	bst_init(&morseToText);
-	bst_init(&textToMorse);
+	bst_init(&morseToBinary, 0);
+	bst_init(&binaryToMorse, 0);
+	bst_init(&morseToText, 0);
+	bst_init(&textToMorse, 0);
 	
 	
 	/* Feed all four Dictionaries the data (key:value) they need to contain */
@@ -88,6 +89,7 @@ int main(void) {
 		/* Check if our Dictionaries are initialized properly */
 		/* If initialized, show main window and start Event Processing Loop */
 		if (isInitialized == 0) {
+			retCode = 0;
 			mainDialog = createMainWindow();
 			IupSetAttribute(mainDialog, "RASTERSIZE", "420x510");
 			IupShowXY(mainDialog, IUP_CENTER, IUP_CENTER);
@@ -96,6 +98,7 @@ int main(void) {
 		
 		/* If not initialized, show an error message and exit */
 		else {
+			retCode = -1;
 			mainDialog = IupMessageDlg();
 			IupSetAttribute(mainDialog, "DIALOGTYPE", "ERROR");
 			IupSetAttribute(mainDialog, "BUTTONS", "OK");
@@ -122,6 +125,6 @@ int main(void) {
 
 
 	/* Return to the operating system */
-	return 0;
+	return retCode;
 }
 

@@ -139,7 +139,6 @@ void textCopyClipboardFrom(Ihandle *textBox) {
 	msgFormat = 0;
 	dlgType = 0;
 
-
 	/* Retrieve the string from the textbox and its length */
 	text = IupGetAttribute(textBox, "VALUE");
 	length = strlen(text);
@@ -163,10 +162,8 @@ void textCopyClipboardFrom(Ihandle *textBox) {
 
 		msgFormat = "Text copied to clipboard, length: %d";
 		
-		
 		/* Additionaly 9 bytes extra for safety, length can be 2 digits or more */
 		msgText = (char *) malloc(strlen(msgFormat) + 10);
-
 		if (msgText == 0) return;
 
 		sprintf(msgText, msgFormat, length);
@@ -187,7 +184,7 @@ void textCopyClipboardFrom(Ihandle *textBox) {
 	IupDestroy(msgDialog);
 	
 	/* Destroy the string buffer we have created before */
-	free(msgText);
+	free((void *) msgText);
 
 	return;
 }

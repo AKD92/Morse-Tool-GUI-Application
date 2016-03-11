@@ -75,7 +75,7 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 	int opReturnCode;
 
 	extern char *error_decode;
-	extern BSTTree binaryToMorse;           	/* Might be declared in the driver file */
+	extern BST binaryToMorse;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_2);
 	txtBinary = IupGetHandle(TXTBINARY_2);
@@ -115,7 +115,7 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 
 		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
 		IupDestroy(errorDialog);
-		free(errorText);
+		free((void *) errorText);
 		goto END;
 	}
 
@@ -127,7 +127,7 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 
 	END:
 	cb_txtMorseAction(txtMorse);
-	free(morseText);
+	free((void *) morseText);
 
 	return IUP_DEFAULT;
 }

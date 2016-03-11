@@ -75,7 +75,7 @@ static int cb_btnDecodeToBinary(Ihandle *btn) {
 	int opReturnCode;
 
 	extern char *error_decode;
-	extern BSTTree morseToBinary;           	/* Might be declared in the driver file */
+	extern BST morseToBinary;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_1);
 	txtBinary = IupGetHandle(TXTBINARY_1);
@@ -115,7 +115,7 @@ static int cb_btnDecodeToBinary(Ihandle *btn) {
 
 		IupPopup(errorDialog, IUP_CENTER, IUP_CENTER);
 		IupDestroy(errorDialog);
-		free(errorText);
+		free((void *) errorText);
 		goto END;
 	}
 
@@ -127,7 +127,7 @@ static int cb_btnDecodeToBinary(Ihandle *btn) {
 
 	END:
 	cb_txtBinaryAction(txtBinary);
-	free(binaryText);
+	free((void *) binaryText);
 
 	return IUP_DEFAULT;
 }
