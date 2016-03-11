@@ -8,7 +8,7 @@
 
 This is basically a conversion tool. It uses the library <b>libmorse.a</b> for all kinds of conversion and it is very convenient and easy to use. It is particularly useful if you wish to change your ASCII text to Morse code representation, Binary representation etc, and the reverse operations are also supported.
 
-For example, ASCII Text <b>SOS</b> might be converted to its equivalent Morse Code <b>... --- ...</b? <i>DOT DOT DOT DASH DASH DASH DOT DOT DOT</i>
+For example, ASCII Text <b>SOS</b> might be converted to its equivalent Morse Code <b>... --- ...</b> <i>DOT DOT DOT DASH DASH DASH DOT DOT DOT</i>
 
 
 ### Implemented Features:
