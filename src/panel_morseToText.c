@@ -5,6 +5,7 @@
 	Implementation code of Morse To ASCII panel box + necessary callback functions
 	Author:             Ashis Kumar Das
 	Email:              akd.bracu@gmail.com
+	GitHub:             https://github.com/AKD92
 *************************************************************************************/
 
 
@@ -75,7 +76,7 @@ static int cb_btnDecodeToAscii(Ihandle *btn) {
 	int opReturnCode;
 
 	extern char *error_decode;
-	extern BST morseToText;           	/* Might be declared in the driver file */
+	extern BisTree morseToText;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_3);
 	txtAscii = IupGetHandle(TXTASCII_1);

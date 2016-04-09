@@ -5,6 +5,7 @@
 	Implementation code of Morse To Binary panel box + necessary callback functions
 	Author:             Ashis Kumar Das
 	Email:              akd.bracu@gmail.com
+	GitHub:             https://github.com/AKD92
 *************************************************************************************/
 
 
@@ -75,7 +76,7 @@ static int cb_btnDecodeToBinary(Ihandle *btn) {
 	int opReturnCode;
 
 	extern char *error_decode;
-	extern BST morseToBinary;           	/* Might be declared in the driver file */
+	extern BisTree morseToBinary;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_1);
 	txtBinary = IupGetHandle(TXTBINARY_1);

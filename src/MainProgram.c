@@ -5,7 +5,9 @@
 	Implementation code for main() function and global variables
 	Author:             Ashis Kumar Das
 	Email:              akd.bracu@gmail.com
+	GitHub:             https://github.com/AKD92
 *************************************************************************************/
+
 
 
 
@@ -25,10 +27,10 @@ int main(void);
 
 
 /* Dictionary data structure variables for code conversions */
-BST morseToBinary;
-BST binaryToMorse;
-BST morseToText;
-BST textToMorse;
+BisTree morseToBinary;
+BisTree binaryToMorse;
+BisTree morseToText;
+BisTree textToMorse;
 
 
 /* Error message to show if something goes wrong */
@@ -58,13 +60,6 @@ int main(void) {
 	int init1, init2, init3, init4;
 	unsigned int isInitialized;
 	int retCode;
-	
-	
-	/* Initialize all four Dictionary data structures (optional) */
-	bst_init(&morseToBinary, 0);
-	bst_init(&binaryToMorse, 0);
-	bst_init(&morseToText, 0);
-	bst_init(&textToMorse, 0);
 	
 	
 	/* Feed all four Dictionaries the data (key:value) they need to contain */

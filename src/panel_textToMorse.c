@@ -77,7 +77,7 @@ static int cb_btnDecodeToMorse(Ihandle *btn) {
 	int opReturnCode;
 
 	extern char *error_decode;
-	extern BST textToMorse;           	/* Might be declared in the driver file */
+	extern BisTree textToMorse;           	/* Might be declared in the driver file */
 
 	txtMorse = IupGetHandle(TXTMORSE_4);
 	txtAscii = IupGetHandle(TXTASCII_2);
