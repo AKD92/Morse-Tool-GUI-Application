@@ -43,7 +43,7 @@ libmorse.a</b>
 <a href="https://github.com/AKD92/Morse-Tool-GUI-Application/raw/master/bin/morsetool.exe">
 Standalone Executable (Win32)</a>
 <br>
-Compiled using <a href="www.mingw.ord">MinGW GCC 4.8.1</a>
+Compiled using <a href="http://www.mingw.org/">MinGW GCC 4.8.1</a>
 </b></li>
 <li><b>
 <a href="src">Browse for Source Codes</a> on GitHub
