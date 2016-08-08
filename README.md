@@ -11,25 +11,44 @@ This is basically a conversion tool. It uses the library <b>libmorse.a</b> for a
 For example, ASCII Text <b>SOS</b> might be converted to its equivalent Morse Code <b>... --- ...</b> <i>DOT DOT DOT DASH DASH DASH DOT DOT DOT</i>
 
 
-### Implemented Features:
-
-* ASCII Text to Morse code conversion
-* Morse Code to ASCII text conversion
-* Morse Code to Binary conversion
-* Binary to Morse Code conversion
-
-
-### Code Dependencies
-
-  * <b>libmorse.a</b> : A collection of algorithms and utility functions for transforming Morse code to other forms and vice versa.
-  * <b>libbst.a</b> : General purpose Dictionary data structure, implemented using Binary Search Tree (BST).
-  * <b>libstackqueue.a</b> : General purpose Stack and Queue data structures.
-  * <b>liblinkedlist.a</b> : General purpose Linked List data structure, including both singly and doubly versions.
+<h3>Implemented Features:</h3>
+<ul>
+<li><b>ASCII Text to Morse code conversion</b></li>
+<li><b>Morse Code to ASCII text conversion</b></li>
+<li><b>Morse Code to Binary conversion</b></li>
+<li><b>Binary to Morse Code conversion</b></li>
+</ul>
 
 
-This project is compiled using <b>GCC 4.8.2 32 bit</b> Windows port.
+<h3>Code Dependencies</h3>
+<ul>
+<li><b>
+libmorse.a</b>
+: A collection of algorithms and utility functions for transforming Morse code to other forms and vice versa.
+</li>
+<li>
+<b>libbst.a</b> : General purpose Dictionary data structure, implemented using Binary Search Tree (BST).
+</li>
+<li>
+<b>libstq.a</b> : General purpose Stack and Queue data structures.
+</li>
+<li>
+<b>liblinkedlist.a</b> : General purpose Linked List data structure, including both singly and doubly variations.
+</li>
+</ul>
 
-For more information, please check the <a href = "http://akd92.github.io/Morse-Tool-GUI-Application/">Project Website</a>
+<h3>Download</h3>
+<ul>
+<li><b>
+<a href="https://github.com/AKD92/Morse-Tool-GUI-Application/raw/master/bin/morsetool.exe">
+Standalone Executable (Win32)</a>
+<br>
+Compiled using <a href="www.mingw.ord">MinGW GCC 4.8.1</a>
+</b></li>
+<li><b>
+<a href="src">Browse for Source Codes</a> on GitHub
+</b></li>
+</ul>
 
-### License
+<h3>License</h3<
 <a rel="license" href="http://www.gnu.org/licenses/gpl-3.0-standalone.html"><img alt="GPLv3 License" style="border-width:0" src="http://www.gnu.org/graphics/gplv3-127x51.png" /></a><br />This software is licensed under <a rel="license" href="http://www.gnu.org/licenses/gpl-3.0-standalone.html">GNU General Public License, Version 3</a>.
